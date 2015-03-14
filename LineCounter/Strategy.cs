@@ -27,7 +27,7 @@ namespace TeamBinary.LineCounter
             var res = new Statistics();
             var lines = File.ReadAllLines(path);
 
-            foreach(var line in lines)
+            foreach (var line in lines)
             {
                 var l = line.Trim();
                 if (string.IsNullOrWhiteSpace(l))
@@ -39,13 +39,33 @@ namespace TeamBinary.LineCounter
                 if (l == "/// <summary>" || l == "/// </summary>")
                     continue;
 
-                if(l.StartsWith("/// "))
+                if (l.StartsWith("/// "))
                     res.DocumentationLines++;
 
                 if (l.StartsWith("//") || l.StartsWith("////"))
                     continue;
 
                 res.CodeLines++;
+            }
+
+            return res;
+        }
+    }
+
+    class MarkDownStrategy : IStrategy
+    {
+        public Statistics Count(string path)
+        {
+            var res = new Statistics();
+            var lines = File.ReadAllLines(path);
+
+            foreach (var line in lines)
+            {
+                var l = line.Trim();
+                if (string.IsNullOrWhiteSpace(l))
+                    continue;
+
+                res.DocumentationLines++;
             }
 
             return res;

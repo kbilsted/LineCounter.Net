@@ -12,8 +12,8 @@ namespace TeamBinary.LineCounter.Tests
         public void DirWalker()
         {
             var res = new DirWalker().DoWork(@"C:\Users\kbg\Documents\GitHub\StatePrinter\");
-            Assert.AreEqual(3013, res.CodeLines);
-            Assert.AreEqual(213, res.DocumentationLines);
+            Assert.AreEqual(2840, res.CodeLines);
+            Assert.AreEqual(1184, res.DocumentationLines);
             Console.WriteLine(new WebFormatter().CreateGithubShields(res));
         }
 
