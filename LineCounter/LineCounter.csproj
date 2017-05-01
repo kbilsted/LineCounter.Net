@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Statistics.cs" />
+    <Compile Include="Strategies\FSharpStrategy.cs" />
     <Compile Include="Strategies\IStrategy.cs" />
     <Compile Include="Strategies\CSharpStrategy.cs" />
     <Compile Include="Linecounter.cs" />
