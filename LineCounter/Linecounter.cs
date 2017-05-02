@@ -34,6 +34,8 @@ namespace TeamBinary.LineCounter
             var ext = Path.GetExtension(path);
             if (ext == ".cs")
                 return new CSharpStrategy();
+            if (ext == ".cshtml")
+                return new CsHtmlStrategy();
             if (ext == ".fs")
                 return new FSharpStrategy();
             if (ext == ".md")
