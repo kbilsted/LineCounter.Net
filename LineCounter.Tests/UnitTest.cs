@@ -9,7 +9,13 @@ namespace TeamBinary.LineCounter.Tests
     [TestClass]
     public class UnitTest1
     {
-
+		/*
+		string lens						964			5.024630542
+		ordinal startswith				1015		18.99441341
+		ordnial rather than ==			1253		1.338582677
+		string.length check				1270		0
+		master uden length check		1270		0
+		*/
 		[TestMethod]
 		public void run()
 		{
