@@ -21,7 +21,7 @@ namespace TeamBinary.LineCounter
                 if (l.StartsWith("/// "))
                     res.DocumentationLines++;
 
-                if (l.StartsWith("//") || l.StartsWith("////"))
+                if (l.StartsWith("//"))
                     continue;
 
                 res.CodeLines++;
