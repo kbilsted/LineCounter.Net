@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace TeamBinary.LineCounter
 {
@@ -21,10 +22,10 @@ namespace TeamBinary.LineCounter
                 if ((l.Length == 13 && string.Compare(l, "/// <summary>", StringComparison.Ordinal) == 0 || (l.Length == 14 && string.Compare(l, "/// </summary>", StringComparison.Ordinal)==0)))
                     continue;
 
-                if (l.StartsWith("/// "))
+                if (l.StartsWith("/// ", StringComparison.Ordinal))
                     res.DocumentationLines++;
 
-                if (l.StartsWith("//"))
+                if (l.StartsWith("//", StringComparison.Ordinal))
                     continue;
 
                 res.CodeLines++;
