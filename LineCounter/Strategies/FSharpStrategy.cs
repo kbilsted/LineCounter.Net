@@ -15,7 +15,7 @@ namespace TeamBinary.LineCounter
                 if (string.IsNullOrWhiteSpace(l))
                     continue;
 
-                if (l == "/// <summary>" || l == "/// </summary>")
+                if ((l.Length == 13 && l == "/// <summary>") || (l.Length == 14 && l == "/// </summary>"))
                     continue;
 
                 if (l.StartsWith("/// "))

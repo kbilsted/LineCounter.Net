@@ -15,7 +15,7 @@ namespace TeamBinary.LineCounter
                 if (string.IsNullOrWhiteSpace(l))
                     continue;
 
-                if (l == "{" || l == "}" || l == ";")
+                if (l.Length == 1 && (l == "{" || l == "}" || l == ";"))
                     continue;
 
                 if (l.StartsWith("//"))
