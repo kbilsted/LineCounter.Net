@@ -13,14 +13,15 @@ namespace TeamBinary.LineCounter.Tests
 		[TestMethod]
 		public void run()
 		{
+			var files = DirWalker.GetFiles(@"C:\src\");
 			Stopwatch w = Stopwatch.StartNew();
-			var res = new DirWalker().DoWork(@"C:\src\");
+			var res = new DirWalker().DoWork(files);
 			Console.WriteLine("Time: " + w.ElapsedMilliseconds);
 			Console.WriteLine(new WebFormatter().CreateGithubShields(res));
 		}
 
 		[TestMethod]
-        public void DirWalker()
+        public void DirWalker2()
         {
             var res = new DirWalker().DoWork(@"C:\Users\kbg\Documents\GitHub\StatePrinter\");
             Console.WriteLine(new WebFormatter().CreateGithubShields(res));

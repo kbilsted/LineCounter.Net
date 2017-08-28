@@ -1,13 +1,15 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.IO;
 
 namespace TeamBinary.LineCounter
 {
-    public class DirWalker
-    {
-	    public Statistics DoWork(string[] files)
-	    {
-            var stat = new Statistics();
+	public class DirWalker
+	{
+		public Statistics DoWork(string[] files)
+		{
+			var stat = new Statistics();
 			foreach (var file in files)
 			{
 				var strategy = GetStrategy(file);
@@ -20,42 +22,39 @@ namespace TeamBinary.LineCounter
 		}
 
 		public Statistics DoWork(string path)
-        {
-            var stat = new Statistics();
+		{
+			var files = GetFiles(path);
 
-            // TODO replace with recursive visitor to avoid load on file system since we then can skip visiting deep subfolders
-            var allFiles = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories);
-            var files = allFiles.Where(x => !(
-                x.Contains(@"\.hg\")
-                || x.Contains(@"\.git\")
-                || x.Contains(@"\obj\Debug\")
-                || x.Contains(@"\obj\ReSharper\")));
+			Console.WriteLine("new filescount: " + files.Count());
 
-            foreach (var file in files)
-            {
-                var strategy = GetStrategy(file);
-                var res = strategy.Count(file);
-                stat.CodeLines += res.CodeLines;
-                stat.DocumentationLines += res.DocumentationLines;
-            }
+			return DoWork(files);
+		}
 
-            return stat;
-        }
+		public static string[] GetFiles(string path)
+		{
+			var allFiles = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories);
+			var files = allFiles.Where(x => !(
+				x.Contains(@"\.hg\")
+				|| x.Contains(@"\.git\")
+				|| x.Contains(@"\obj\Debug\")
+				|| x.Contains(@"\obj\ReSharper\")));
+			return files.ToArray();
+		}
 
-        IStrategy GetStrategy(string path)
-        {
-            //Console.WriteLine("path: " + path);
-            var ext = Path.GetExtension(path);
-            if (ext == ".cs")
-                return new CSharpStrategy();
-            if (ext == ".cshtml")
-                return new CsHtmlStrategy();
-            if (ext == ".fs")
-                return new FSharpStrategy();
-            if (ext == ".md")
-                return new MarkDownStrategy();
+		IStrategy GetStrategy(string path)
+		{
+			//Console.WriteLine("path: " + path);
+			var ext = Path.GetExtension(path);
+			if (ext == ".cs")
+				return new CSharpStrategy();
+			if (ext == ".cshtml")
+				return new CsHtmlStrategy();
+			if (ext == ".fs")
+				return new FSharpStrategy();
+			if (ext == ".md")
+				return new MarkDownStrategy();
 
-            return new UnknownFileTypeStragegy();
-        }
-    }
+			return new UnknownFileTypeStragegy();
+		}
+	}
 }
