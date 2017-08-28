@@ -1,34 +1,40 @@
 ﻿using System;
 using System.IO;
+using LineCounter;
 
 namespace TeamBinary.LineCounter
 {
     class CSharpStrategy : IStrategy
     {
-        public Statistics Count(string path)
+		static TrimStringLens l = new TrimStringLens();
+		public Statistics Count(string path)
         {
             var res = new Statistics();
             var lines = File.ReadAllLines(path);
 
+
             foreach (var line in lines)
             {
-                var l = line.Trim();
-                if (string.IsNullOrWhiteSpace(l))
+                l.SetValue(line);
+				if (l.IsWhitespace())
                     continue;
 
-				if (l.Length == 1 && (string.Compare(l, "{", StringComparison.Ordinal) == 0 || string.Compare(l, "}", StringComparison.Ordinal) == 0 || string.Compare(l, ";", StringComparison.Ordinal) == 0))
+                if (l == "{" || l == "}" || l == ";")
                     continue;
 
-                if ((l.Length == 13 && string.Compare(l, "/// <summary>", StringComparison.Ordinal) == 0 || (l.Length == 14 && string.Compare(l, "/// </summary>", StringComparison.Ordinal)==0)))
-                    continue;
+	            if (l.StartsWithOrdinal("/"))
+	            {
+		            if (l == "/// <summary>" || l == "/// </summary>")
+			            continue;
 
-                if (l.StartsWith("/// ", StringComparison.Ordinal))
-                    res.DocumentationLines++;
+		            if (l.StartsWithOrdinal("/// "))
+			            res.DocumentationLines++;
 
-                if (l.StartsWith("//", StringComparison.Ordinal))
-                    continue;
+		            if (l.StartsWithOrdinal("//"))
+			            continue;
+	            }
 
-                res.CodeLines++;
+	            res.CodeLines++;
             }
 
             return res;

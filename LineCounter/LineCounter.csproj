@@ -48,6 +48,7 @@
     <Compile Include="Strategies\MarkDownStrategy.cs" />
     <Compile Include="Strategies\UnknownFileTypeStragegy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TrimStringLens.cs" />
     <Compile Include="WebFormatter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

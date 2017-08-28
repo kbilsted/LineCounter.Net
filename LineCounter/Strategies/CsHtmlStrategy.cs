@@ -1,25 +1,28 @@
 using System;
 using System.IO;
+using LineCounter;
 
 namespace TeamBinary.LineCounter
 {
     class CsHtmlStrategy : IStrategy
     {
-        public Statistics Count(string path)
+		static TrimStringLens l = new TrimStringLens();
+		public Statistics Count(string path)
         {
             var res = new Statistics();
             var lines = File.ReadAllLines(path);
 
-            foreach (var line in lines)
+
+			foreach (var line in lines)
             {
-                var l = line.Trim();
-                if (string.IsNullOrWhiteSpace(l))
+				l.SetValue(line);
+				if (l.IsWhitespace())
+					continue;
+
+                if (l == "{" || l == "}" || l == ";")
                     continue;
 
-                if (l.Length == 1 && (string.Compare(l, "{", StringComparison.Ordinal) == 0 || string.Compare(l, "}", StringComparison.Ordinal)==0 || string.Compare(l, ";", StringComparison.Ordinal)==0))
-                    continue;
-
-                if (l.StartsWith("//", StringComparison.Ordinal))
+                if (l.StartsWithOrdinal("//"))
                     continue;
 
                 res.CodeLines++;
