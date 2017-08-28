@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TeamBinary.LineCounter;
@@ -8,7 +9,17 @@ namespace TeamBinary.LineCounter.Tests
     [TestClass]
     public class UnitTest1
     {
-        [TestMethod]
+
+		[TestMethod]
+		public void run()
+		{
+			Stopwatch w = Stopwatch.StartNew();
+			var res = new DirWalker().DoWork(@"C:\src\");
+			Console.WriteLine("Time: " + w.ElapsedMilliseconds);
+			Console.WriteLine(new WebFormatter().CreateGithubShields(res));
+		}
+
+		[TestMethod]
         public void DirWalker()
         {
             var res = new DirWalker().DoWork(@"C:\Users\kbg\Documents\GitHub\StatePrinter\");
