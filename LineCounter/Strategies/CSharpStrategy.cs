@@ -15,10 +15,10 @@ namespace TeamBinary.LineCounter
                 if (string.IsNullOrWhiteSpace(l))
                     continue;
 
-                if (l.Length == 1 && (l == "{" || l == "}" || l == ";"))
+				if (l.Length == 1 && (string.Compare(l, "{", StringComparison.Ordinal) == 0 || string.Compare(l, "}", StringComparison.Ordinal) == 0 || string.Compare(l, ";", StringComparison.Ordinal) == 0))
                     continue;
 
-                if ((l.Length == 13 && l == "/// <summary>") || (l.Length == 14 && l == "/// </summary>"))
+                if ((l.Length == 13 && string.Compare(l, "/// <summary>", StringComparison.Ordinal) == 0 || (l.Length == 14 && string.Compare(l, "/// </summary>", StringComparison.Ordinal)==0)))
                     continue;
 
                 if (l.StartsWith("/// "))
