@@ -5,7 +5,21 @@ namespace TeamBinary.LineCounter
 {
     public class DirWalker
     {
-        public Statistics DoWork(string path)
+	    public Statistics DoWork(string[] files)
+	    {
+            var stat = new Statistics();
+			foreach (var file in files)
+			{
+				var strategy = GetStrategy(file);
+				var res = strategy.Count(file);
+				stat.CodeLines += res.CodeLines;
+				stat.DocumentationLines += res.DocumentationLines;
+			}
+
+			return stat;
+		}
+
+		public Statistics DoWork(string path)
         {
             var stat = new Statistics();
 
