@@ -24,11 +24,14 @@ namespace TeamBinary.LineCounter
 
 	            if (l.StartsWithOrdinal("/"))
 	            {
-		            if (l == "/// <summary>" || l == "/// </summary>")
+					if (l.StartsWithOrdinal("/// "))
+					{
+						if (l == "/// <summary>" || l == "/// </summary>")
 			            continue;
 
-		            if (l.StartsWithOrdinal("/// "))
-			            res.DocumentationLines++;
+						res.DocumentationLines++;
+						continue;
+					}
 
 		            if (l.StartsWithOrdinal("//"))
 			            continue;
