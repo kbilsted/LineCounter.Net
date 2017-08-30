@@ -20,6 +20,7 @@ namespace TeamBinary.LineCounter.Tests
 		public void run()
 		{
 			var files = DirWalker.GetFiles(@"C:\src\");
+			Console.WriteLine("number files*: " + files.Length);
 			Stopwatch w = Stopwatch.StartNew();
 			var res = new DirWalker().DoWork(files);
 			Console.WriteLine("Time: " + w.ElapsedMilliseconds);
