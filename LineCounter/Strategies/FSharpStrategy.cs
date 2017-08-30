@@ -1,28 +1,34 @@
 ﻿using System;
 using System.IO;
+using LineCounter;
 
 namespace TeamBinary.LineCounter
 {
     class FSharpStrategy : IStrategy
     {
-        public Statistics Count(string path)
+		static TrimStringLens l = new TrimStringLens();
+
+		public Statistics Count(string path)
         {
             var res = new Statistics();
             var lines = File.ReadAllLines(path);
 
-            foreach (var line in lines)
-            {
-                var l = line.Trim();
-                if (string.IsNullOrWhiteSpace(l))
+			foreach (var line in lines)
+			{
+				l.SetValue(line);
+                if (l.IsWhitespace())
                     continue;
 
-                if ((l.Length == 13 && l == "/// <summary>") || (l.Length == 14 && l == "/// </summary>"))
+                if (l == "/// <summary>" || l == "/// </summary>")
                     continue;
 
-                if (l.StartsWith("/// ", StringComparison.Ordinal))
-                    res.DocumentationLines++;
+	            if (l.StartsWithOrdinal("/// "))
+	            {
+		            res.DocumentationLines++;
+					continue;
+	            }
 
-                if (l.StartsWith("//", StringComparison.Ordinal))
+                if (l.StartsWithOrdinal("//"))
                     continue;
 
                 res.CodeLines++;
