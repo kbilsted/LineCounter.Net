@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
-using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LineCounter
 {
@@ -116,23 +109,16 @@ namespace LineCounter
 				sIndex++;
 			}
 			return true;
-
-
-
-
-
-
-
-
-			//if (s.Length != lens.Length)
-			//	return false;
-			//return 0 == string.CompareOrdinal(lens._value, lens._start, s, 0, s.Length);
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool operator !=(TrimStringLens lens, string s)
 		{
 			return !(lens == s);
+		}
+
+		public override bool Equals(object obj) {
+			return base.Equals(obj);
 		}
 	}
 }

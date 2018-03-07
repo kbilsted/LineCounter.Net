@@ -25,12 +25,12 @@ namespace TeamBinary.LineCounter
 		{
 			var files = GetFiles(path);
 
-			Console.WriteLine("new filescount: " + files.Count());
+			//Console.WriteLine("filescount: " + files.Count());
 
 			return DoWork(files);
 		}
 
-		public static string[] GetFiles(string path)
+		public virtual string[] GetFiles(string path)
 		{
 			var allFiles = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories);
 			var files = allFiles.Where(x => !(
@@ -41,7 +41,7 @@ namespace TeamBinary.LineCounter
 			return files.ToArray();
 		}
 
-		IStrategy GetStrategy(string path)
+		public virtual IStrategy GetStrategy(string path)
 		{
 			//Console.WriteLine("path: " + path);
 			var ext = Path.GetExtension(path);

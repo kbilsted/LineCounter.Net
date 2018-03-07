@@ -1,6 +1,6 @@
 ﻿namespace TeamBinary.LineCounter
 {
-    interface IStrategy
+    public interface IStrategy
     {
         Statistics Count(string path);
     }
