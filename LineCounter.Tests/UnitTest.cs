@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TeamBinary.LineCounter;
+using NUnit.Framework;
 
 namespace TeamBinary.LineCounter.Tests
 {
-    [TestClass]
-    public class UnitTest1
+    public class UnitTest
     {
 		/*
 		string lens						964			5.024630542
@@ -16,10 +13,10 @@ namespace TeamBinary.LineCounter.Tests
 		string.length check				1270		0
 		master uden length check		1270		0
 		*/
-		[TestMethod]
+		[Test]
 		public void run()
 		{
-			var files = DirWalker.GetFiles(@"C:\src\");
+			var files = new DirWalker().GetFiles(@"C:\src\");
 			Console.WriteLine("number files*: " + files.Length);
 			Stopwatch w = Stopwatch.StartNew();
 			var res = new DirWalker().DoWork(files);
@@ -27,17 +24,17 @@ namespace TeamBinary.LineCounter.Tests
 			Console.WriteLine(new WebFormatter().CreateGithubShields(res));
 		}
 
-		[TestMethod]
+		[Test]
         public void DirWalker2()
         {
-            var res = new DirWalker().DoWork(@"C:\Users\kbg\Documents\GitHub\StatePrinter\");
+            var res = new DirWalker().DoWork(@"C:\src\Linecounter.net\");
             Console.WriteLine(new WebFormatter().CreateGithubShields(res));
-            Assert.AreEqual(3257, res.CodeLines);
-            Assert.AreEqual(1376, res.DocumentationLines);
+            Assert.AreEqual(309, res.CodeLines);
+            Assert.AreEqual(1548, res.DocumentationLines);
             Console.WriteLine(new WebFormatter().CreateGithubShields(res));
         }
 
-        [TestMethod]
+		[Test]
         public void Webformatter()
         {
             var stat = new Statistics() { CodeLines = 2399, DocumentationLines = 299 };
