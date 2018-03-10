@@ -25,16 +25,6 @@ namespace TeamBinary.LineCounter.Tests
 		}
 
 		[Test]
-        public void DirWalker2()
-        {
-            var res = new DirWalker().DoWork(@"C:\src\Linecounter.net\");
-            Console.WriteLine(new WebFormatter().CreateGithubShields(res));
-            Assert.AreEqual(309, res.CodeLines);
-            Assert.AreEqual(1548, res.DocumentationLines);
-            Console.WriteLine(new WebFormatter().CreateGithubShields(res));
-        }
-
-		[Test]
         public void Webformatter()
         {
             var stat = new Statistics() { CodeLines = 2399, DocumentationLines = 299 };
