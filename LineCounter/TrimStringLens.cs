@@ -41,7 +41,7 @@ namespace LineCounter
 			var len = _value.Length;
 			for (_start = 0; _start < len; _start++)
 			{
-				if (_value[_start] != ' ' && _value[_start] != '\t')
+				if (_value[_start] != ' ' && _value[_start] != '\t' && _value[_start] != '\r' && _value[_start] != '\n')
 					break;
 			}
 
@@ -50,7 +50,7 @@ namespace LineCounter
 			{
 				for (int i= _value.Length - 1; i >= _start; i--)
 				{
-					if (_value[i] != ' ' && _value[i] != '\t')
+					if (_value[i] != ' ' && _value[i] != '\t' && _value[i] != '\r' && _value[i] != '\n')
 						break;
 					_end--;
 				}
@@ -117,8 +117,15 @@ namespace LineCounter
 			return !(lens == s);
 		}
 
-		public override bool Equals(object obj) {
-			return base.Equals(obj);
+		public override bool Equals(object obj)
+		{
+			TrimStringLens otherLens = (TrimStringLens) obj;
+			return _value == otherLens._value && _start == otherLens._start && _end == otherLens._end;
+		}
+
+		public override string ToString()
+		{
+			return _value.Substring(_start, Length);
 		}
 	}
 }

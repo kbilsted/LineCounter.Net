@@ -30,6 +30,7 @@ namespace TeamBinary.LineCounter
 			return DoWork(files);
 		}
 
+                // TODO replace with recursive visitor to avoid load on file system since we then can skip visiting deep subfolders
 		public virtual string[] GetFiles(string path)
 		{
 			var allFiles = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories);
