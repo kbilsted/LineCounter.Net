@@ -2,14 +2,14 @@
 using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using NUnit.Framework;
 using TeamBinary.LineCounter;
+using Xunit;
 
 namespace LineCounter.Tests
 {
     public class ReadMeHelper
     {
-        [Test]
+        [Fact]
         public void MutateReadme()
         {
             var basePath = Path.Combine(Assembly.GetExecutingAssembly().Location, "..", "..", "..","..");
@@ -27,7 +27,7 @@ namespace LineCounter.Tests
                 File.WriteAllText(readmePath, newReadMe);
         }
 
-        [Test]
+        [Fact]
         public void CountExample()
         {
             string version1 = @"
@@ -69,8 +69,8 @@ class Foo
             var stat1 = new CSharpStrategy().Count(version1.Split('\n'));
             var stat2 = new CSharpStrategy().Count(version2.Split('\n'));
 
-            Assert.AreEqual(8, stat1.CodeLines);
-            Assert.AreEqual(8, stat2.CodeLines);
+            Assert.Equal(8, stat1.CodeLines);
+            Assert.Equal(8, stat2.CodeLines);
         }
     }
 }

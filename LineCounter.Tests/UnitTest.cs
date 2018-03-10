@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using NUnit.Framework;
+using Xunit;
 
 namespace TeamBinary.LineCounter.Tests
 {
@@ -13,7 +13,7 @@ namespace TeamBinary.LineCounter.Tests
 		string.length check				1270		0
 		master uden length check		1270		0
 		*/
-		[Test]
+		[Fact]
 		public void run()
 		{
 			var files = new DirWalker().GetFiles(@"C:\src\");
@@ -24,13 +24,13 @@ namespace TeamBinary.LineCounter.Tests
 			Console.WriteLine(new WebFormatter().CreateGithubShields(res));
 		}
 
-		[Test]
+		[Fact]
         public void Webformatter()
         {
             var stat = new Statistics() { CodeLines = 2399, DocumentationLines = 299 };
             var res = new WebFormatter().CreateGithubShields(stat);
             Console.WriteLine(res);
-            Assert.AreEqual(@"[![Stats](https://img.shields.io/badge/Code_lines-2,4_K-ff69b4.svg)]()
+            Assert.Equal(@"[![Stats](https://img.shields.io/badge/Code_lines-2,4_K-ff69b4.svg)]()
 [![Stats](https://img.shields.io/badge/Doc_lines-299-ff69b4.svg)]()", res);
         }
     }

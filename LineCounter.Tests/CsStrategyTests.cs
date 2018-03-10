@@ -1,16 +1,16 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 
 namespace TeamBinary.LineCounter.Tests
 {
     public class CsStrategyTests
     {
-		[Test]
+		[Fact]
         public void IgnoredLines() {
 			var endOfObjectInitializer = "};";
 
 			var codeLines = new CSharpStrategy().Count(new []{"", " ; "," { ", " } ",endOfObjectInitializer}).CodeLines;
 
-			Assert.AreEqual(0, codeLines);
+			Assert.Equal(0, codeLines);
 		}
     }
 }
