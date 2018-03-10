@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>LineCounting.Net</id>
+    <version>1.0.2</version>
+    <description>
+      An open source utility count lines of code and documentation in an intelligent way, supporting many languages.
+    </description>
+    <releaseNotes>
+  </releaseNotes>
+    <tags>Linecounting shieldsgenerator</tags>
+    <copyright>Copyright 2018-</copyright>
+    <language>en-US</language>
+    <authors>Kasper B. Graversen</authors>
+    <projectUrl>https://github.com/kbilsted/LineCounter.Net</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/kbilsted/StatePrinter/master/StatePrinter/gfx/stateprinter.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <dependencies />
+  </metadata>
+</package>
