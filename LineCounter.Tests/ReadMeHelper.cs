@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using TeamBinary.LineCounter;
@@ -14,14 +13,14 @@ namespace LineCounter.Tests
         {
             var basePath = Path.Combine(Assembly.GetExecutingAssembly().Location, "..", "..", "..","..");
 
-            var stats = new DirWalker().DoWork(Path.Combine(basePath, "LineCounter"));
+            var stats = new DirWalker().CountFolder(Path.Combine(basePath, "LineCounter"));
 
             var shieldsRegEx = new Regex("<!--start-->.*<!--end-->", RegexOptions.Singleline);
             var githubShields = new WebFormatter().CreateGithubShields(stats);
 
             var readmePath = Path.Combine(basePath, "README.md");
             var oldReadme = File.ReadAllText(readmePath);
-            var newReadMe = shieldsRegEx.Replace(oldReadme, "<!--start-->" + githubShields + "<!--end-->");
+            var newReadMe = shieldsRegEx.Replace(oldReadme, $"<!--start-->\r\n{githubShields}\r\n<!--end-->");
 
             if (oldReadme != newReadMe)
                 File.WriteAllText(readmePath, newReadMe);

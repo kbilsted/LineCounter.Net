@@ -2,8 +2,10 @@
 A library to do sensible line counting and generating "shields" for Github readme's.
 
 Project statistics:
-<!--start-->[![Stats](https://img.shields.io/badge/Code_lines-240-ff69b4.svg)]()
-[![Stats](https://img.shields.io/badge/Doc_lines-2-ff69b4.svg)]()<!--end-->
+<!--start-->
+[![Stats](https://img.shields.io/badge/Code_lines-240-ff69b4.svg)]()
+[![Stats](https://img.shields.io/badge/Doc_lines-2-ff69b4.svg)]()
+<!--end-->
 
 
 
