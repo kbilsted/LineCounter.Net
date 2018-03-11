@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using KbgSoft.LineCounter;
 using Xunit;
 
 namespace TeamBinary.LineCounter.Tests
@@ -16,10 +17,10 @@ namespace TeamBinary.LineCounter.Tests
 		[Fact]
 		public void run()
 		{
-			var files = new DirWalker().GetFiles(@"C:\src\");
+			var files = new LineCounting().GetFiles(@"C:\src\");
 			Console.WriteLine("number files*: " + files.Length);
 			Stopwatch w = Stopwatch.StartNew();
-			var res = new DirWalker().CountFiles(files);
+			var res = new LineCounting().CountFiles(files);
 			Console.WriteLine("Time: " + w.ElapsedMilliseconds);
 			Console.WriteLine(new WebFormatter().CreateGithubShields(res));
 		}

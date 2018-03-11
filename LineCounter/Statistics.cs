@@ -1,8 +1,6 @@
-﻿namespace TeamBinary.LineCounter
-{
-    public class Statistics
-    {
-        public int CodeLines;
-        public int DocumentationLines;
-    }
+﻿namespace KbgSoft.LineCounter {
+	public class Statistics {
+		public int CodeLines;
+		public int DocumentationLines;
+	}
 }

@@ -3,7 +3,7 @@ A library to do sensible line counting and generating "shields" for Github readm
 
 Project statistics:
 <!--start-->
-[![Stats](https://img.shields.io/badge/Code_lines-240-ff69b4.svg)]()
+[![Stats](https://img.shields.io/badge/Code_lines-213-ff69b4.svg)]()
 [![Stats](https://img.shields.io/badge/Doc_lines-2-ff69b4.svg)]()
 <!--end-->
 

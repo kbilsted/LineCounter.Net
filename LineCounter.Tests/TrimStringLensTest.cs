@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using KbgSoft.LineCounter;
+using Xunit;
 
 namespace LineCounter.Tests
 {
@@ -11,6 +12,7 @@ namespace LineCounter.Tests
 			Assert.Equal(6, new TrimStringLens("kasper").Length);
 			Assert.Equal(6, new TrimStringLens("kasper ").Length);
 			Assert.Equal(6, new TrimStringLens(" kasper ").Length);
+			Assert.Equal(6, new TrimStringLens(" \tkasper \t").Length);
 		}
 
 		[Fact]

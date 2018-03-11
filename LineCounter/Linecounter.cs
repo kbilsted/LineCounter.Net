@@ -1,15 +1,12 @@
-﻿using System.Linq;
-using System.IO;
+﻿using System.IO;
+using System.Linq;
+using KbgSoft.LineCounter.Strategies;
 
-namespace TeamBinary.LineCounter
-{
-	public class DirWalker
-	{
-		public Statistics CountFiles(string[] paths)
-		{
+namespace KbgSoft.LineCounter {
+	public class LineCounting {
+		public Statistics CountFiles(string[] paths) {
 			var stat = new Statistics();
-			foreach (var file in paths)
-			{
+			foreach (var file in paths) {
 				var strategy = GetStrategy(file);
 				var res = strategy.Count(file);
 				stat.CodeLines += res.CodeLines;
@@ -19,8 +16,7 @@ namespace TeamBinary.LineCounter
 			return stat;
 		}
 
-		public Statistics CountFolder(string path)
-		{
+		public Statistics CountFolder(string path) {
 			var files = GetFiles(path);
 
 			//Console.WriteLine("filescount: " + files.Count());
@@ -29,8 +25,7 @@ namespace TeamBinary.LineCounter
 		}
 
 		// TODO replace with recursive visitor to avoid load on file system since we then can skip visiting deep subfolders
-		public virtual string[] GetFiles(string path)
-		{
+		public virtual string[] GetFiles(string path) {
 			var allFiles = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories);
 			var files = allFiles.Where(x => !(
 				x.Contains(@"\.hg\")
@@ -40,8 +35,7 @@ namespace TeamBinary.LineCounter
 			return files.ToArray();
 		}
 
-		public virtual IStrategy GetStrategy(string path)
-		{
+		public virtual IStrategy GetStrategy(string path) {
 			//Console.WriteLine("path: " + path);
 			var ext = Path.GetExtension(path);
 			if (ext == ".cs")

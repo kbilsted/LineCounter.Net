@@ -1,25 +1,19 @@
-﻿using System;
-using System.IO;
-using LineCounter;
+﻿using System.IO;
 
-namespace TeamBinary.LineCounter
-{
-	public class CSharpStrategy : IStrategy
-	{
-		static TrimStringLens l = new TrimStringLens();
-		public Statistics Count(string path)
-		{
+namespace KbgSoft.LineCounter.Strategies {
+	public class CSharpStrategy : IStrategy {
+		private static readonly TrimStringLens l = new TrimStringLens();
+
+		public Statistics Count(string path) {
 			var lines = File.ReadAllLines(path);
 
 			return Count(lines);
 		}
 
-		public Statistics Count(string[] lines)
-		{
+		public Statistics Count(string[] lines) {
 			var res = new Statistics();
 
-			foreach (var line in lines)
-			{
+			foreach (var line in lines) {
 				l.SetValue(line);
 				if (l.IsWhitespace())
 					continue;
@@ -27,10 +21,8 @@ namespace TeamBinary.LineCounter
 				if (l == "{" || l == "}" || l == ";" || l == "};")
 					continue;
 
-				if (l.StartsWithOrdinal("/"))
-				{
-					if (l.StartsWithOrdinal("/// "))
-					{
+				if (l.StartsWithOrdinal("/")) {
+					if (l.StartsWithOrdinal("/// ")) {
 						if (l == "/// <summary>" || l == "/// </summary>")
 							continue;
 

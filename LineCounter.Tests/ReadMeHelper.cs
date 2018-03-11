@@ -1,7 +1,8 @@
 ﻿using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using TeamBinary.LineCounter;
+using KbgSoft.LineCounter;
+using KbgSoft.LineCounter.Strategies;
 using Xunit;
 
 namespace LineCounter.Tests
@@ -11,9 +12,9 @@ namespace LineCounter.Tests
         [Fact]
         public void MutateReadme()
         {
-            var basePath = Path.Combine(Assembly.GetExecutingAssembly().Location, "..", "..", "..","..");
+            var basePath = Path.Combine(Assembly.GetExecutingAssembly().Location, "..", "..", "..","..","..");
 
-            var stats = new DirWalker().CountFolder(Path.Combine(basePath, "LineCounter"));
+            var stats = new LineCounting().CountFolder(Path.Combine(basePath, "LineCounter"));
 
             var shieldsRegEx = new Regex("<!--start-->.*<!--end-->", RegexOptions.Singleline);
             var githubShields = new WebFormatter().CreateGithubShields(stats);
