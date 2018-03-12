@@ -13,6 +13,7 @@ namespace LineCounter.Tests
 			Assert.Equal(6, new TrimStringLens("kasper ").Length);
 			Assert.Equal(6, new TrimStringLens(" kasper ").Length);
 			Assert.Equal(6, new TrimStringLens(" \tkasper \t").Length);
+			Assert.Equal(6, new TrimStringLens(" \rkasper \n").Length);
 		}
 
 		[Fact]

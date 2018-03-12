@@ -36,16 +36,17 @@ namespace KbgSoft.LineCounter {
 		private void Prepare() {
 			var len = _value.Length;
 			for (_start = 0; _start < len; _start++)
-				if (_value[_start] != ' ' && _value[_start] != '\t' && _value[_start] != '\r' && _value[_start] != '\n')
+				if(!char.IsWhiteSpace(_value, _start))
 					break;
 
 			_end = Math.Max(_start, _value.Length);
-			if (_start < _value.Length)
+			if (_start < _value.Length) {
 				for (var i = _value.Length - 1; i >= _start; i--) {
-					if (_value[i] != ' ' && _value[i] != '\t' && _value[i] != '\r' && _value[i] != '\n')
+					if (!char.IsWhiteSpace(_value, i))
 						break;
 					_end--;
 				}
+			}
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
