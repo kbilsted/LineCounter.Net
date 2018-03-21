@@ -12,13 +12,13 @@ Project statistics:
 ## Sensible line counting
 What is "sensible line counting"? The idea is to count lines of code in such a way that 
 
-    * Only lines with semantic value are counted.
-    * Various coding styles for the same code should roughly yield the same line counting.
-    * Take into account "you get what you measure".
+  * Only lines with semantic value are counted.
+  * Various coding styles for the same code should roughly yield the same line counting.
+  * Take into account "you get what you measure".
     
 Why is that important? Because we want an estimate of size of code irregardles of coding style. For example
 
-    class Foo {
+    class Foo { // example 1
         public void Bar() {
             if(moons == 9) {
                  Planet = Pluto;
@@ -33,7 +33,7 @@ Why is that important? Because we want an estimate of size of code irregardles o
 
 Should roughly yield the same lines of code as the less compact style
 
-    class Foo 
+    class Foo // example 2
     {
         public void Bar() 
         {
@@ -54,7 +54,7 @@ Should roughly yield the same lines of code as the less compact style
     }
 
 
-In the text editor we have example 1 being 12 lines of code and example 2 19 lines or 58% longer! Linecounter will report 8 lines of code for each example.
+Example 1 takes up 12 lines of code while example 2 takes 19 lines -- 58% longer! Linecounter will report 8 lines of code for both code examples.
 
 
 
@@ -64,5 +64,6 @@ The theory "you get what you measure" means exactly that. By whatever metric you
 E.g. when you praise programmers for the number of lines of code, they'll start making long-winded code. 
 I've withnessed this first-hand a couple of times with outsourcing. 
 
-The code is far from perfect with respect to only counting semantic lines, but its a start :-)
+I'm well aware that this is far from perfect with respect to only counting semantic lines, but its a start.. and another reason I wrote this was to test on live data some string-algorithm optimizations I will blog about on http://firstclassthoughts.co.uk/ some day :-)
+
 
