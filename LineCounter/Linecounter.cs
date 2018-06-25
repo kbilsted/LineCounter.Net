@@ -37,6 +37,11 @@ namespace KbgSoft.LineCounter {
 		}
 
 		public virtual IStrategy GetStrategy(string path) {
+			var folderIsJsModuleFolder = path.Contains(@"\node_modules\");
+
+			if (folderIsJsModuleFolder)
+				return new UnknownFileTypeStragegy();
+
 			//Console.WriteLine("path: " + path);
 			var ext = Path.GetExtension(path);
 			if (ext == ".cs")
@@ -49,6 +54,10 @@ namespace KbgSoft.LineCounter {
 				return new MarkDownStrategy();
 			if (ext == ".c"|| ext == ".h")
 				return new CStrategy();
+			if (ext == ".js")
+				return new JSStrategy();
+			if (ext == ".ts")
+				return new TSStrategy();
 
 			return new UnknownFileTypeStragegy();
 		}
