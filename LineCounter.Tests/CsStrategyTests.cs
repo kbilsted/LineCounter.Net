@@ -14,14 +14,14 @@ namespace TeamBinary.LineCounter.Tests
 
 			Assert.Equal(0, codeLines);
 
-			Console.WriteLine(new CSharpStrategy().Count(@"C:\Users\Kbg\Desktop\kbgit.cs").CodeLines);
-			Console.WriteLine(new CSharpStrategy().Count(@"C:\Users\Kbg\Desktop\kbgit.cs").DocumentationLines);
+			Console.WriteLine(new CSharpStrategy().Count(@"C:\src\KBGit\git.cs").CodeLines);
+			Console.WriteLine(new CSharpStrategy().Count(@"C:\src\KBGit\git.cs").DocumentationLines);
 		}
 
 	    [Fact]
 	    public void Manual()
 	    {
-		    Console.WriteLine(new CSharpStrategy().Count(@"C:\Users\Kbg\Desktop\kbgit.cs").CodeLines);
+		    Console.WriteLine(new CSharpStrategy().Count(@"C:\src\KBGit\git.cs").CodeLines);
 	    }
 	}
 }
