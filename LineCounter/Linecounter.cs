@@ -4,19 +4,20 @@ using KbgSoft.LineCounter.Strategies;
 
 namespace KbgSoft.LineCounter {
 	public class LineCounting {
-		public Statistics CountFiles(string[] paths) {
-			var stat = new Statistics();
+		public Stats CountFiles(string[] paths) {
+			var stat = new Stats();
+
 			foreach (var file in paths) {
 				var strategy = GetStrategy(file);
 				var res = strategy.Count(file);
-				stat.CodeLines += res.CodeLines;
-				stat.DocumentationLines += res.DocumentationLines;
+
+				stat.Add(strategy.StatisticsKey, res);
 			}
 
 			return stat;
 		}
 
-		public Statistics CountFolder(string path) {
+		public Stats CountFolder(string path) {
 			var files = GetFiles(path);
 
 			//Console.WriteLine("filescount: " + files.Count());

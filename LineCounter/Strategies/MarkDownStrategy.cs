@@ -4,6 +4,8 @@ namespace KbgSoft.LineCounter.Strategies {
 	internal class MarkDownStrategy : IStrategy {
 		private const int LineWidth = 75;
 
+		public string StatisticsKey => "Markdown";
+
 		public Statistics Count(string path) {
 			var res = new Statistics();
 			var lines = File.ReadAllLines(path);

@@ -17,7 +17,7 @@ namespace LineCounter.Tests
             var stats = new LineCounting().CountFolder(Path.Combine(basePath, "LineCounter"));
 
             var shieldsRegEx = new Regex("<!--start-->.*<!--end-->", RegexOptions.Singleline);
-            var githubShields = new WebFormatter().CreateGithubShields(stats);
+            var githubShields = new WebFormatter().CreateGithubShields(stats.Total);
 
             var readmePath = Path.Combine(basePath, "README.md");
             var oldReadme = File.ReadAllText(readmePath);

@@ -2,11 +2,20 @@
 using System.Diagnostics;
 using KbgSoft.LineCounter;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace TeamBinary.LineCounter.Tests
 {
 	public class UnitTest
 	{
+		private readonly ITestOutputHelper Console;
+
+		public UnitTest(ITestOutputHelper output)
+		{
+			this.Console = output;
+		}
+
+
 		/*
 		string lens						964			5.024630542
 		ordinal startswith				1015		18.99441341
@@ -15,14 +24,26 @@ namespace TeamBinary.LineCounter.Tests
 		master uden length check		1270		0
 		*/
 		[Fact]
-		public void run()
+		public void Run()
 		{
 			var files = new LineCounting().GetFiles(@"C:\src\");
 			Console.WriteLine("number files*: " + files.Length);
 			Stopwatch w = Stopwatch.StartNew();
 			var res = new LineCounting().CountFiles(files);
 			Console.WriteLine("Time: " + w.ElapsedMilliseconds);
-			Console.WriteLine(new WebFormatter().CreateGithubShields(res));
+			Console.WriteLine(new WebFormatter().CreateGithubShields(res.Total));
+		}
+
+		[Fact]
+		public void RunSrc()
+		{
+			var files = new LineCounting().GetFiles(@"C:\src\");
+			Console.WriteLine("number files*: " + files.Length);
+			Stopwatch w = Stopwatch.StartNew();
+			var res = new LineCounting().CountFiles(files);
+			Console.WriteLine("Time: " + w.ElapsedMilliseconds);
+			Console.WriteLine(res.Print());
+		}
 		}
 
 		[Fact]

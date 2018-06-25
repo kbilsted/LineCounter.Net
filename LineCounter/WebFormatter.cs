@@ -13,5 +13,15 @@ namespace KbgSoft.LineCounter {
 				return "" + count;
 			return string.Format("{0:0.0}_K", count / 1000M);
 		}
+
+		private string FormatWholeK(int count)
+		{
+			return count < 1000 ? $"{count}" : $"{count / 1000M:0}K";
+		}
+
+		public string ToString(Statistics stats)
+		{
+			return $@"Code: {FormatWholeK(stats.CodeLines),5}  Doc: {FormatWholeK(stats.DocumentationLines),5}";
+		}
 	}
 }

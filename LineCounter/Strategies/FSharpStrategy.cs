@@ -4,6 +4,8 @@ namespace KbgSoft.LineCounter.Strategies {
 	internal class FSharpStrategy : IStrategy {
 		private static readonly TrimStringLens lens = new TrimStringLens();
 
+		public string StatisticsKey => "F#";
+
 		public Statistics Count(string path) {
 			var res = new Statistics();
 			var lines = File.ReadAllLines(path);

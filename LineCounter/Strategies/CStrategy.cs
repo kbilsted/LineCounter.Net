@@ -4,6 +4,7 @@ namespace KbgSoft.LineCounter.Strategies {
 	public class CStrategy : IStrategy {
 		private static readonly TrimStringLens l = new TrimStringLens();
 
+		public string StatisticsKey => "C";
 
 		public Statistics Count(string path) {
 			var lines = File.ReadAllLines(path);

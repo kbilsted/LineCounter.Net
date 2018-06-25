@@ -4,6 +4,8 @@ namespace KbgSoft.LineCounter.Strategies {
 	internal class CsHtmlStrategy : IStrategy {
 		private static readonly TrimStringLens l = new TrimStringLens();
 
+		public string StatisticsKey => "cshtml";
+
 		public Statistics Count(string path) {
 			var res = new Statistics();
 			var lines = File.ReadAllLines(path);
