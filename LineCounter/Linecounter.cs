@@ -46,6 +46,8 @@ namespace KbgSoft.LineCounter {
 				return new FSharpStrategy();
 			if (ext == ".md")
 				return new MarkDownStrategy();
+			if (ext == ".c"|| ext == ".h")
+				return new CStrategy();
 
 			return new UnknownFileTypeStragegy();
 		}
