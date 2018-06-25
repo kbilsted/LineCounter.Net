@@ -3,8 +3,8 @@
 namespace KbgSoft.LineCounter.Strategies {
 	public class CSharpStrategy : IStrategy {
 		private static readonly TrimStringLens l = new TrimStringLens();
-
-		public string StatisticsKey => "C#";
+		private bool foundTests = false;
+		public string StatisticsKey => foundTests ? "C# test" : "C#";
 
 		public Statistics Count(string path) {
 			var lines = File.ReadAllLines(path);
@@ -19,6 +19,9 @@ namespace KbgSoft.LineCounter.Strategies {
 				l.SetValue(line);
 				if (l.IsWhitespace())
 					continue;
+
+				if (!foundTests && (l.StartsWithOrdinal("using NUnit.") || l.StartsWithOrdinal("using Selenium.") || l.StartsWithOrdinal("using Xunit")))
+					foundTests = true;
 
 				if (l == "{" || l == "}" || l == ";" || l == "};")
 					continue;
