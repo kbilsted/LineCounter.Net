@@ -42,7 +42,7 @@ namespace TeamBinary.LineCounter.Tests
 			Console.WriteLine("Time: " + w.ElapsedMilliseconds);
 			Console.WriteLine(res.Print());
 		}
-		}
+		
 
 		[Fact]
 		public void Webformatter()
