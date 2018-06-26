@@ -7,15 +7,16 @@ namespace TeamBinary.LineCounter.Tests
     public class CsStrategyTests
     {
 		[Fact]
-        public void IgnoredLines() {
+        public void IgnoredLines()
+		{
 			var endOfObjectInitializer = "};";
 
-			var codeLines = new CSharpStrategy().Count(new []{"", " ; "," { ", " } ",endOfObjectInitializer}).CodeLines;
+			var codeLines = new CSharpStrategy().Count(new []{" ; "," { ", " } ",endOfObjectInitializer}).CodeLines;
 
 			Assert.Equal(0, codeLines);
 
-			Console.WriteLine(new CSharpStrategy().Count(@"C:\src\KBGit\git.cs").CodeLines);
-			Console.WriteLine(new CSharpStrategy().Count(@"C:\src\KBGit\git.cs").DocumentationLines);
+			//Console.WriteLine(new CSharpStrategy().Count(@"C:\src\KBGit\git.cs").CodeLines);
+			//Console.WriteLine(new CSharpStrategy().Count(@"C:\src\KBGit\git.cs").DocumentationLines);
 		}
 
 	    [Fact]

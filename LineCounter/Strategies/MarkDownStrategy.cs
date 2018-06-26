@@ -6,20 +6,23 @@ namespace KbgSoft.LineCounter.Strategies {
 
 		public string StatisticsKey => "Markdown";
 
-		public Statistics Count(string path) {
-			var res = new Statistics();
-			var lines = File.ReadAllLines(path);
+		public Statistics Count(string path)
+		{
+			using (TextReader reader = File.OpenText(path))
+			{
+				var lines = new MultiLineCommentFilterStream().ReadLines(reader);
 
-			foreach (var line in lines) {
-				var l = line.Trim();
-				if (string.IsNullOrWhiteSpace(l))
-					continue;
+				var res = new Statistics();
+				foreach (var line in lines)
+				{
+					var l = line.Trim();
 
-				res.DocumentationLines += l.Length / LineWidth;
-				res.DocumentationLines += l.Length % LineWidth == 0 ? 0 : 1;
+					res.DocumentationLines += l.Length / LineWidth;
+					res.DocumentationLines += l.Length % LineWidth == 0 ? 0 : 1;
+				}
+
+				return res;
 			}
-
-			return res;
 		}
 	}
 }

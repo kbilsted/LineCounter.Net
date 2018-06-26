@@ -1,4 +1,5 @@
 ﻿using System.IO;
+﻿using System.Collections.Generic;
 
 namespace KbgSoft.LineCounter.Strategies
 {
@@ -10,20 +11,19 @@ namespace KbgSoft.LineCounter.Strategies
 
 		public Statistics Count(string path)
 		{
-			var lines = File.ReadAllLines(path);
-
-			return Count(lines);
+			using (TextReader reader = File.OpenText(path))
+			{
+				return Count(new MultiLineCommentFilterStream().ReadLines(reader));
+			}
 		}
 
-		public Statistics Count(string[] lines)
+		public Statistics Count(IEnumerable<string> lines)
 		{
 			var res = new Statistics();
 
 			foreach (var line in lines)
 			{
 				l.SetValue(line);
-				if (l.IsWhitespace())
-					continue;
 
 				if (l.StartsWithOrdinal("--"))
 					continue;

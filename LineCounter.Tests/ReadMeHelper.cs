@@ -66,8 +66,8 @@ class Foo
 }
     ";
 
-            var stat1 = new CSharpStrategy().Count(version1.Split('\n'));
-            var stat2 = new CSharpStrategy().Count(version2.Split('\n'));
+            var stat1 = new CSharpStrategy().Count(new MultiLineCommentFilterStream().ReadLines(new StringReader(version1)));
+            var stat2 = new CSharpStrategy().Count(new MultiLineCommentFilterStream().ReadLines(new StringReader(version2)));
 
             Assert.Equal(8, stat1.CodeLines);
             Assert.Equal(8, stat2.CodeLines);

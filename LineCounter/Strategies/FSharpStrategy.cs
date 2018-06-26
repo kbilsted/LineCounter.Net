@@ -7,29 +7,32 @@ namespace KbgSoft.LineCounter.Strategies {
 		public string StatisticsKey => "F#";
 
 		public Statistics Count(string path) {
-			var res = new Statistics();
-			var lines = File.ReadAllLines(path);
+			using (TextReader reader = File.OpenText(path))
+			{
+				var lines = new MultiLineCommentFilterStream().ReadLines(reader);
 
-			foreach (var line in lines) {
-				lens.SetValue(line);
-				if (lens.IsWhitespace())
-					continue;
+				var res = new Statistics();
+				foreach (var line in lines)
+				{
+					lens.SetValue(line);
 
-				if (lens == "/// <summary>" || lens == "/// </summary>")
-					continue;
+					if (lens == "/// <summary>" || lens == "/// </summary>")
+						continue;
 
-				if (lens.StartsWithOrdinal("/// ")) {
-					res.DocumentationLines++;
-					continue;
+					if (lens.StartsWithOrdinal("/// "))
+					{
+						res.DocumentationLines++;
+						continue;
+					}
+
+					if (lens.StartsWithOrdinal("//"))
+						continue;
+
+					res.CodeLines++;
 				}
 
-				if (lens.StartsWithOrdinal("//"))
-					continue;
-
-				res.CodeLines++;
+				return res;
 			}
-
-			return res;
 		}
 	}
 }
