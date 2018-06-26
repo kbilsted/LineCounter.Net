@@ -17,10 +17,12 @@ namespace KbgSoft.LineCounter.Strategies {
 		public Statistics Count(IEnumerable<string> lines) {
 			var res = new Statistics();
 
+			int lineCount = 0;
 			foreach (var line in lines) {
+				lineCount++;
 				l.SetValue(line);
 
-				if (!foundTests && (l.StartsWithOrdinal("using NUnit.") || l.StartsWithOrdinal("using Selenium.") || l.StartsWithOrdinal("using Xunit")))
+				if (lineCount < 40 && !foundTests && (l.StartsWithOrdinal("using NUnit.") || l.StartsWithOrdinal("using Selenium.") || l.StartsWithOrdinal("using Xunit")))
 					foundTests = true;
 
 				if (l == "{" || l == "}" || l == ";" || l == "};")
