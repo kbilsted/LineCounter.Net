@@ -27,7 +27,6 @@ namespace TeamBinary.LineCounter.Tests
 		public void Run()
 		{
 			var files = new LineCounting().GetFiles(@"C:\src\");
-			Console.WriteLine("number files*: " + files.Length);
 			Stopwatch w = Stopwatch.StartNew();
 			var res = new LineCounting().CountFiles(files);
 			Console.WriteLine("Time: " + w.ElapsedMilliseconds);
@@ -38,7 +37,6 @@ namespace TeamBinary.LineCounter.Tests
 		public void RunSrc()
 		{
 			var files = new LineCounting().GetFiles(@"C:\src\");
-			Console.WriteLine("number files*: " + files.Length);
 			Stopwatch w = Stopwatch.StartNew();
 			var res = new LineCounting().CountFiles(files);
 			Console.WriteLine("Time: " + w.ElapsedMilliseconds);

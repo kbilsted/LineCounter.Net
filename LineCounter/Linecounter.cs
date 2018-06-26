@@ -1,10 +1,12 @@
 ﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using KbgSoft.LineCounter.Strategies;
 
 namespace KbgSoft.LineCounter {
 	public class LineCounting {
-		public Stats CountFiles(string[] paths) {
+		public Stats CountFiles(IEnumerable<string> paths) {
 			var stat = new Stats();
 
 			foreach (var file in paths) {
@@ -25,15 +27,18 @@ namespace KbgSoft.LineCounter {
 			return CountFiles(files);
 		}
 
-		// TODO replace with recursive visitor to avoid load on file system since we then can skip visiting deep subfolders
-		public virtual string[] GetFiles(string path) {
-			var allFiles = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories);
-			var files = allFiles.Where(x => !(
-				x.Contains(@"\.hg\")
-				|| x.Contains(@"\.git\")
-				|| x.Contains(@"\obj\Debug\")
-				|| x.Contains(@"\obj\ReSharper\")));
-			return files.ToArray();
+		public IEnumerable<string> GetFiles(string path)
+		{
+			var files = (Directory.GetFiles(path, "*.*", SearchOption.TopDirectoryOnly));
+			var dirs = Directory.GetDirectories(path, "*", SearchOption.TopDirectoryOnly)
+				.Where(x => !(x.EndsWith(@"\.hg", StringComparison.Ordinal)
+				              || x.EndsWith(@"\.git", StringComparison.Ordinal)
+				              || x.EndsWith(@"\node_modules", StringComparison.Ordinal)
+				              || x.EndsWith(@"\packages", StringComparison.Ordinal)
+				              || x.EndsWith(@"\obj\Debug", StringComparison.Ordinal)
+				              || x.EndsWith(@"\obj\ReSharper", StringComparison.Ordinal)));
+
+			return files.Concat(dirs.SelectMany(GetFiles));
 		}
 
 		public virtual IStrategy GetStrategy(string path) {
