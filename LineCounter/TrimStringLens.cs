@@ -78,7 +78,8 @@ namespace KbgSoft.LineCounter {
 		}
 
 		public static bool operator ==(TrimStringLens lens, string s) {
-			if (lens._start == lens._value.Length) return s == "";
+			if (lens._start == lens._value.Length)
+				return s == "";
 
 			if (lens.Length != s.Length)
 				return false;
