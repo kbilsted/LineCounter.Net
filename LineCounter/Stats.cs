@@ -5,11 +5,14 @@ namespace KbgSoft.LineCounter
 {
 	public class Stats
 	{
+		public int Files { get; private set; } = 0;
 		public readonly Dictionary<string, Statistics> FiletypeStat = new Dictionary<string, Statistics>();
 		public readonly Statistics Total = new Statistics();
 
 		public void Add(string statisticsKey, Statistics stats)
 		{
+			Files++;
+
 			Total.CodeLines += stats.CodeLines;
 			Total.DocumentationLines += stats.DocumentationLines;
 
