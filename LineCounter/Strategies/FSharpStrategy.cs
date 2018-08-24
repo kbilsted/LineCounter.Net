@@ -16,9 +16,6 @@ namespace KbgSoft.LineCounter.Strategies {
 				{
 					lens.SetValue(line);
 
-					if (lens == "/// <summary>" || lens == "/// </summary>")
-						continue;
-
 					if (lens.StartsWithOrdinal("/// "))
 					{
 						res.DocumentationLines++;
