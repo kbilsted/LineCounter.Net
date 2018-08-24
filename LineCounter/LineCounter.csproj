@@ -4,15 +4,16 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Kasper B. Graversen</Authors>
     <Copyright>Kasper B. Graversen, 2015-</Copyright>
-    <AssemblyVersion>1.0.0.4</AssemblyVersion>
-    <FileVersion>1.0.0.4</FileVersion>
+    <AssemblyVersion>1.0.0.5</AssemblyVersion>
+    <FileVersion>1.0.0.5</FileVersion>
     <PackageLicenseUrl>https://github.com/kbilsted/LineCounter.Net/blob/master/LICENSE</PackageLicenseUrl>
     <RootNamespace>KbgSoft.LineCounter</RootNamespace>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
     <Description>An open source utility count lines of code and documentation in an intelligent way, supporting many languages.</Description>
     <PackageTags>Linecounting shieldsgenerator</PackageTags>
     <PackageProjectUrl>https://github.com/kbilsted/LineCounter.Net</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/kbilsted/StatePrinter/master/StatePrinter/gfx/stateprinter.png</PackageIconUrl>
+    <PackageReleaseNotes>Add support for test-code detection and readme-mutator helper method</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
