@@ -13,18 +13,8 @@ namespace LineCounter.Tests
         public void MutateReadme()
         {
             var basePath = Path.Combine(Assembly.GetExecutingAssembly().Location, "..", "..", "..","..","..");
-
-            var stats = new LineCounting().CountFolder(Path.Combine(basePath, "LineCounter"));
-
-            var shieldsRegEx = new Regex("<!--start-->.*<!--end-->", RegexOptions.Singleline);
-            var githubShields = new WebFormatter().CreateGithubShields(stats.Total);
-
-            var readmePath = Path.Combine(basePath, "README.md");
-            var oldReadme = File.ReadAllText(readmePath);
-            var newReadMe = shieldsRegEx.Replace(oldReadme, $"<!--start-->\r\n{githubShields}\r\n<!--end-->");
-
-            if (oldReadme != newReadMe)
-                File.WriteAllText(readmePath, newReadMe);
+			var linecounter = new LineCounting();
+			linecounter.ReplaceWebshieldsInFile(basePath, Path.Combine(basePath, "README.md"));
         }
 
         [Fact]

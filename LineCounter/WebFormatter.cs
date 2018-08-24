@@ -2,8 +2,9 @@ namespace KbgSoft.LineCounter {
 	public class WebFormatter {
 		public string CreateGithubShields(Statistics stats) {
 			var str = @"[![Stats](https://img.shields.io/badge/Code_lines-{0}-ff69b4.svg)]()
-[![Stats](https://img.shields.io/badge/Doc_lines-{1}-ff69b4.svg)]()";
-			var res = string.Format(str, Format(stats.CodeLines), Format(stats.DocumentationLines));
+[![Stats](https://img.shields.io/badge/Test_lines-{1}-69ffb4.svg)]()
+[![Stats](https://img.shields.io/badge/Doc_lines-{2}-ffb469.svg)]()";
+			var res = string.Format(str, Format(stats.CodeLines), Format(stats.TestCodeLines), Format(stats.DocumentationLines));
 
 			return res;
 		}

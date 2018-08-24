@@ -53,7 +53,8 @@ namespace TeamBinary.LineCounter.Tests
 			var res = new WebFormatter().CreateGithubShields(stat);
 			Console.WriteLine(res);
 			Assert.Equal(@"[![Stats](https://img.shields.io/badge/Code_lines-2,4_K-ff69b4.svg)]()
-[![Stats](https://img.shields.io/badge/Doc_lines-299-ff69b4.svg)]()", res);
+[![Stats](https://img.shields.io/badge/Test_lines-0-69ffb4.svg)]()
+[![Stats](https://img.shields.io/badge/Doc_lines-299-ffb469.svg)]()", res);
 		}
 	}
 }

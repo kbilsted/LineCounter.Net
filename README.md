@@ -1,11 +1,34 @@
 # LineCounter.Net
-A library to do sensible line counting and generating "shields" for Github readme's.
+A library to do "sensible line counting" - and - generating "shields" for Github readme's. 
+
+Features
+
+* Support single-line and multi-line comments
+* Auto detects test code
+* Supports parsing C#, F#, CSHtml, Javascript, C, Sql, and Typescript
 
 Project statistics:
 <!--start-->
-[![Stats](https://img.shields.io/badge/Code_lines-386-ff69b4.svg)]()
-[![Stats](https://img.shields.io/badge/Doc_lines-2-ff69b4.svg)]()
+[![Stats](https://img.shields.io/badge/Code_lines-410-ff69b4.svg)]()
+[![Stats](https://img.shields.io/badge/Test_lines-115-69ffb4.svg)]()
+[![Stats](https://img.shields.io/badge/Doc_lines-64-ffb469.svg)]()
 <!--end-->
+
+
+## Getting started
+
+The simplest way to automate using this library is to add a unit test that on each time it runs, mutates your readme file. That way your stats are always up to date. E.g. 
+
+        [Fact]
+        public void MutateReadme()
+        {
+            var basePath = Path.Combine(Assembly.GetExecutingAssembly().Location, "..", "..", "..","..","..");
+            
+            var linecounter = new LineCounting();
+            linecounter.ReplaceWebshieldsInFile(basePath, Path.Combine(basePath, "README.md"));
+        }
+
+The file to mutate must contain two magic markers `<!--start-->` and `<!--end-->` which will be where LineCounter.Net will replace content.
 
 
 
