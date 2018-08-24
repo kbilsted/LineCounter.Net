@@ -42,6 +42,7 @@ namespace TeamBinary.LineCounter.Tests
 			Console.WriteLine("files: " + res.Files);
 			Console.WriteLine("Time: " + w.ElapsedMilliseconds);
 			Console.WriteLine(res.Print());
+			Console.WriteLine($"total: code {res.Total.CodeLines} and test {res.Total.TestCodeLines} and doc {res.Total.DocumentationLines}");
 		}
 		
 

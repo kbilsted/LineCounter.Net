@@ -15,10 +15,12 @@ namespace KbgSoft.LineCounter
 
 			Total.CodeLines += stats.CodeLines;
 			Total.DocumentationLines += stats.DocumentationLines;
+			Total.TestCodeLines += stats.TestCodeLines;
 
 			if (!FiletypeStat.ContainsKey(statisticsKey))
 				FiletypeStat.Add(statisticsKey, new Statistics());
 			FiletypeStat[statisticsKey].CodeLines += stats.CodeLines;
+			FiletypeStat[statisticsKey].TestCodeLines += stats.TestCodeLines;
 			FiletypeStat[statisticsKey].DocumentationLines += stats.DocumentationLines;
 		}
 

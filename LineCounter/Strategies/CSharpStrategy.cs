@@ -5,7 +5,7 @@ namespace KbgSoft.LineCounter.Strategies {
 	public class CSharpStrategy : IStrategy {
 		private static readonly TrimStringLens l = new TrimStringLens();
 		private bool foundTests = false;
-		public string StatisticsKey => foundTests ? "C# test" : "C#";
+		public string StatisticsKey => "C#";
 
 		public Statistics Count(string path) {
 			using (TextReader reader = File.OpenText(path))
@@ -42,6 +42,12 @@ namespace KbgSoft.LineCounter.Strategies {
 				}
 
 				res.CodeLines++;
+			}
+
+			if (foundTests)
+			{
+				res.TestCodeLines= res.CodeLines;
+				res.CodeLines = 0;
 			}
 
 			return res;

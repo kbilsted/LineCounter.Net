@@ -21,7 +21,7 @@ namespace KbgSoft.LineCounter {
 
 		public string ToString(Statistics stats)
 		{
-			return $@"Code: {FormatWholeK(stats.CodeLines),5}  Doc: {FormatWholeK(stats.DocumentationLines),5}";
+			return $@"Code: {FormatWholeK(stats.CodeLines),5}  Test: {FormatWholeK(stats.TestCodeLines),5} Doc: {FormatWholeK(stats.DocumentationLines),5}";
 		}
 	}
 }
