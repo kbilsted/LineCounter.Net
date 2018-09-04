@@ -44,11 +44,15 @@ namespace KbgSoft.LineCounter {
 
 		public virtual IStrategy GetStrategy(string path) {
 			//Console.WriteLine("path: " + path);
-			var ext = Path.GetExtension(path);
+			var ext = Path.GetExtension(path).ToLowerInvariant();
 			if (ext == ".cs")
 				return new CSharpStrategy();
 			if (ext == ".cshtml")
 				return new CsHtmlStrategy();
+			if (ext == ".csproj")
+				return new CsprojStrategy();
+			if (ext == ".sln")
+				return new SlnStrategy();
 			if (ext == ".fs")
 				return new FSharpStrategy();
 			if (ext == ".md")
