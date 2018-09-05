@@ -20,6 +20,7 @@ namespace KbgSoft.LineCounter.Strategies
 		public Statistics Count(IEnumerable<string> lines)
 		{
 			var res = new Statistics();
+		    res.Files = 1;
 
 			foreach (var line in lines)
 			{

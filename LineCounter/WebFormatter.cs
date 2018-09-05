@@ -20,9 +20,14 @@ namespace KbgSoft.LineCounter {
 			return count < 1000 ? $"{count}" : $"{count / 1000M:0}K";
 		}
 
-		public string ToString(Statistics stats)
+	    public string PrintOnlyCode(Statistics stats)
+	    {
+	        return $@"{(stats.CodeLines.ToString("N0")),7}";
+	    }
+
+        public string ToString(Statistics stats)
 		{
-			return $@"Code: {FormatWholeK(stats.CodeLines),5}  Test: {FormatWholeK(stats.TestCodeLines),5} Doc: {FormatWholeK(stats.DocumentationLines),5}";
+			return $@"Code: {FormatWholeK(stats.CodeLines),5}  Test: {FormatWholeK(stats.TestCodeLines),5} Doc: {FormatWholeK(stats.DocumentationLines),5} Files: {FormatWholeK(stats.Files),5}";
 		}
 	}
 }

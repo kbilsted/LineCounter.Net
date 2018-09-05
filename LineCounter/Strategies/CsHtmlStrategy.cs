@@ -12,7 +12,10 @@ namespace KbgSoft.LineCounter.Strategies {
 			{
 				var lines = new MultiLineCommentFilterStream().ReadLines(reader);
 
-				var res = new Statistics();
+				var res = new Statistics()
+				{
+                    Files = 1,
+				};
 				foreach (var line in lines)
 				{
 					l.SetValue(line);

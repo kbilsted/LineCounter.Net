@@ -1,4 +1,6 @@
-﻿namespace KbgSoft.LineCounter.Strategies
+﻿using System;
+
+namespace KbgSoft.LineCounter.Strategies
 {
     internal class SlnStrategy : IStrategy
     {
@@ -6,7 +8,7 @@
 
         public Statistics Count(string path)
         {
-            return new Statistics() {};
+            return new Statistics() {Files = 1};
         }
     }
 }

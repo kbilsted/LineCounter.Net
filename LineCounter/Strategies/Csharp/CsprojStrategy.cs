@@ -8,7 +8,7 @@ namespace KbgSoft.LineCounter.Strategies
 
         public Statistics Count(string path)
         {
-            return new Statistics() {};
+            return new Statistics() {Files = 1};
         }
     }
 }
