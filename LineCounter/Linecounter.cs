@@ -30,23 +30,42 @@ namespace KbgSoft.LineCounter {
 
 		public IEnumerable<string> GetFiles(string path)
 		{
-			var files = (Directory.GetFiles(path, "*.*", SearchOption.TopDirectoryOnly));
+			var files = (Directory.GetFiles(path, "*.*", SearchOption.TopDirectoryOnly))
+				.Select(x => new {Filename = Path.GetFileName(x), x})
+				.Where(x => !x.Filename.StartsWith("jquery", StringComparison.OrdinalIgnoreCase))
+				.Where(x => !x.Filename.StartsWith("bootstrap", StringComparison.OrdinalIgnoreCase))
+				.Where(x => !x.Filename.StartsWith("angular", StringComparison.OrdinalIgnoreCase))
+				.Where(x => !x.Filename.StartsWith("knockout", StringComparison.OrdinalIgnoreCase))
+				.Where(x => !x.Filename.StartsWith("modernizr", StringComparison.OrdinalIgnoreCase))
+
+				.Select(x => x.x);
+
 			var dirs = Directory.GetDirectories(path, "*", SearchOption.TopDirectoryOnly)
 				.Where(x => !(x.EndsWith(@"\.hg", StringComparison.Ordinal)
-				              || x.EndsWith(@"\.git", StringComparison.Ordinal)
-				              || x.EndsWith(@"\node_modules", StringComparison.Ordinal)
-				              || x.EndsWith(@"\packages", StringComparison.Ordinal)
-				              || x.EndsWith(@"\obj\Debug", StringComparison.Ordinal)
-				              || x.EndsWith(@"\obj\ReSharper", StringComparison.Ordinal)));
+							  || x.EndsWith(@"\.git", StringComparison.Ordinal)
+							  || x.EndsWith(@"\node_modules", StringComparison.Ordinal)
+							  || x.EndsWith(@"\jspm_packages", StringComparison.Ordinal)
+							  || x.EndsWith(@"\packages", StringComparison.Ordinal)
+
+
+							  || x.EndsWith(@"\obj\Debug", StringComparison.Ordinal)
+							  || x.EndsWith(@"\obj\ReSharper", StringComparison.Ordinal)));
 
 			return files.Concat(dirs.SelectMany(GetFiles));
 		}
 
-		public virtual IStrategy GetStrategy(string path) {
+		readonly CStrategy c = new CStrategy();
+		readonly CSharpStrategy cs = new CSharpStrategy();
+		readonly SqlStrategy sql = new SqlStrategy();
+		readonly UnknownFileTypeStragegy unknown = new UnknownFileTypeStragegy();
+		readonly JSStrategy js = new JSStrategy();
+
+		public virtual IStrategy GetStrategy(string path)
+		{
 			//Console.WriteLine("path: " + path);
 			var ext = Path.GetExtension(path).ToLowerInvariant();
 			if (ext == ".cs")
-				return new CSharpStrategy();
+				return cs;
 			if (ext == ".cshtml")
 				return new CsHtmlStrategy();
 			if (ext == ".csproj")
@@ -57,14 +76,21 @@ namespace KbgSoft.LineCounter {
 				return new FSharpStrategy();
 			if (ext == ".md")
 				return new MarkDownStrategy();
-			if (ext == ".c"|| ext == ".h")
-				return new CStrategy();
+			if (ext == ".c" || ext == ".h" || ext == ".cpp")
+				return c;
 			if (ext == ".js")
-				return new JSStrategy();
+				return js;
 			if (ext == ".ts")
 				return new TSStrategy();
+			if (ext == ".prc" || ext == ".pkb" || ext == ".fnc")
+			{
+				//Console.WriteLine(path);
+				return sql;
+			}
 
-			return new UnknownFileTypeStragegy();
+			//Console.WriteLine(path);
+			//Console.ReadKey();
+			return unknown;
 		}
 
 		/// <summary>
