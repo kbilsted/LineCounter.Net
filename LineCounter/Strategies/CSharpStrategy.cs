@@ -27,6 +27,7 @@ namespace KbgSoft.LineCounter.Strategies {
 		public Statistics Count(IEnumerable<string> lines) {
 			res.CodeLines = 0;
 		    res.DocumentationLines = 0;
+		    res.Files = 1;
 		    foundTests = false;
 
 			int lineCount = 0;
