@@ -100,11 +100,11 @@ namespace KbgSoft.LineCounter {
 		{
 			var stats = new LineCounting().CountFolder(codeFolderPath);
 
-			var shieldsRegEx = new Regex("<!--start-->.*<!--end-->", RegexOptions.Singleline);
+			var shieldsRegEx = new Regex("\r?\n<!--start-->[^<]*\n<!--end-->", RegexOptions.Singleline);
 			var githubShields = new WebFormatter().CreateGithubShields(stats.Total);
 
 			var oldReadme = File.ReadAllText(pathOfFileToMutate);
-			var newReadMe = shieldsRegEx.Replace(oldReadme, $"<!--start-->\r\n{githubShields}\r\n<!--end-->");
+			var newReadMe = shieldsRegEx.Replace(oldReadme, $"\r\n<!--start-->\r\n{githubShields}\r\n<!--end-->");
 
 			if (oldReadme != newReadMe)
 				File.WriteAllText(pathOfFileToMutate, newReadMe);

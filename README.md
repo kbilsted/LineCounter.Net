@@ -9,13 +9,15 @@ Features
 
 Project statistics:
 <!--start-->
-[![Stats](https://img.shields.io/badge/Code_lines-410-ff69b4.svg)]()
+[![Stats](https://img.shields.io/badge/Code_lines-547-ff69b4.svg)]()
 [![Stats](https://img.shields.io/badge/Test_lines-115-69ffb4.svg)]()
-[![Stats](https://img.shields.io/badge/Doc_lines-64-ffb469.svg)]()
+[![Stats](https://img.shields.io/badge/Doc_lines-84-ffb469.svg)]()
 <!--end-->
 
 
 ## Getting started
+
+First install the nuget package: `LineCounter` (it is a **.Net Standard 2.0** package)
 
 The simplest way to automate using this library is to add a unit test that on each time it runs, mutates your readme file. That way your stats are always up to date. E.g. 
 
@@ -28,7 +30,7 @@ The simplest way to automate using this library is to add a unit test that on ea
             linecounter.ReplaceWebshieldsInFile(basePath, Path.Combine(basePath, "README.md"));
         }
 
-The file to mutate must contain two magic markers `<!--start-->` and `<!--end-->` which will be where LineCounter.Net will replace content.
+The file to mutate must contain two magic markers `<!--start-->` and `<!--end-->` which will be where LineCounter.Net will replace content. (tags must be on a separate line)
 
 
 

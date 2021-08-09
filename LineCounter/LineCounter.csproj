@@ -4,8 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Kasper B. Graversen</Authors>
     <Copyright>Kasper B. Graversen, 2015-</Copyright>
-    <AssemblyVersion>1.0.0.5</AssemblyVersion>
-    <FileVersion>1.0.0.5</FileVersion>
+    <AssemblyVersion>1.0.5.0</AssemblyVersion>
+    <FileVersion>1.0.5.0</FileVersion>
     <PackageLicenseUrl>https://github.com/kbilsted/LineCounter.Net/blob/master/LICENSE</PackageLicenseUrl>
     <RootNamespace>KbgSoft.LineCounter</RootNamespace>
     <Version>1.0.5</Version>
