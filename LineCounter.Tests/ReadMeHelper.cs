@@ -3,13 +3,14 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using KbgSoft.LineCounter;
 using KbgSoft.LineCounter.Strategies;
-using Xunit;
+using NUnit.Framework;
+
 
 namespace LineCounter.Tests
 {
     public class ReadMeHelper
     {
-        [Fact]
+        [Test]
         public void MutateReadme()
         {
             var basePath = Path.Combine(Assembly.GetExecutingAssembly().Location, "..", "..", "..","..","..");
@@ -17,7 +18,7 @@ namespace LineCounter.Tests
 			linecounter.ReplaceWebshieldsInFile(basePath, Path.Combine(basePath, "README.md"));
         }
 
-        [Fact]
+        [Test]
         public void CountExample()
         {
             string version1 = @"
@@ -59,8 +60,8 @@ class Foo
             var stat1 = new CSharpStrategy().Count(new MultiLineCommentFilterStream().ReadLines(new StringReader(version1)));
             var stat2 = new CSharpStrategy().Count(new MultiLineCommentFilterStream().ReadLines(new StringReader(version2)));
 
-            Assert.Equal(8, stat1.CodeLines);
-            Assert.Equal(8, stat2.CodeLines);
+            Assert.AreEqual(8, stat1.CodeLines);
+            Assert.AreEqual(8, stat2.CodeLines);
         }
     }
 }

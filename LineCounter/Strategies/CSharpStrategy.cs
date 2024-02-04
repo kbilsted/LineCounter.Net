@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace KbgSoft.LineCounter.Strategies {
 	public class CSharpStrategy : IStrategy {
@@ -20,6 +21,8 @@ namespace KbgSoft.LineCounter.Strategies {
 			        return new Statistics();
 			    SeenBefore.Add(hash);
 
+				if(path.ToLower().Contains(".Test"))
+					foundTests = true;
 			    return Count(filteredFileContant);
 			}
 		}
@@ -37,8 +40,14 @@ namespace KbgSoft.LineCounter.Strategies {
 			    if (l == "{" || l == "}" || l == ";" || l == "};")
 			        continue;
 
-			    if (lineCount++ < 40 && !foundTests && (l.StartsWithOrdinal("using NUnit.") || l.StartsWithOrdinal("using Selenium.") || l.StartsWithOrdinal("using Xunit")))
-					foundTests = true;
+				if(!foundTests && lineCount++ < 60)
+				    if (l.StartsWithOrdinal("[Test]")
+						|| l.StartsWithOrdinal("[Fact]") 
+						|| l.StartsWithOrdinal("[TestFixture]") 
+						|| l.StartsWithOrdinal("using NUnit.") 
+						|| l.StartsWithOrdinal("using Selenium.") 
+						|| l.StartsWithOrdinal("using Xunit"))
+						foundTests = true;
 
 				if (l.StartsWithOrdinal("/")) {
 					if (l.StartsWithOrdinal("/// ")) {

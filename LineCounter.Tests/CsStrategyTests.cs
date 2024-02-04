@@ -1,28 +1,30 @@
-﻿using Xunit;
+﻿using KbgSoft.LineCounter.Strategies;
+using NUnit.Framework;
 using System;
-using KbgSoft.LineCounter.Strategies;
 
 namespace TeamBinary.LineCounter.Tests
 {
+
+    [TestFixture]
     public class CsStrategyTests
     {
-		[Fact]
+        [Test]
         public void IgnoredLines()
-		{
-			var endOfObjectInitializer = "};";
+        {
+            var endOfObjectInitializer = "};";
 
-			var codeLines = new CSharpStrategy().Count(new []{" ; "," { ", " } ",endOfObjectInitializer}).CodeLines;
+            var codeLines = new CSharpStrategy().Count(new[] { " ; ", " { ", " } ", endOfObjectInitializer }).CodeLines;
 
-			Assert.Equal(0, codeLines);
+            Assert.AreEqual(0, codeLines);
 
-			//Console.WriteLine(new CSharpStrategy().Count(@"C:\src\KBGit\git.cs").CodeLines);
-			//Console.WriteLine(new CSharpStrategy().Count(@"C:\src\KBGit\git.cs").DocumentationLines);
-		}
+            //Console.WriteLine(new CSharpStrategy().Count(@"C:\src\KBGit\git.cs").CodeLines);
+            //Console.WriteLine(new CSharpStrategy().Count(@"C:\src\KBGit\git.cs").DocumentationLines);
+        }
 
-	    [Fact]
-	    public void Manual()
-	    {
-		    Console.WriteLine(new CSharpStrategy().Count(@"C:\src\KBGit\git.cs").CodeLines);
-	    }
-	}
+        [Test]
+        public void Manual()
+        {
+            Console.WriteLine(new CSharpStrategy().Count(@"C:\src\KBGit\git.cs").CodeLines);
+        }
+    }
 }

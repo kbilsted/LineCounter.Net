@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34003.232
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LineCounter", "LineCounter\LineCounter.csproj", "{71DDBA2A-32D6-4019-8107-A2DAEA82DD10}"
 EndProject
@@ -12,8 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LineCounter.Tests", "LineCounter.Tests\LineCounter.Tests.csproj", "{2ED14734-B1E0-4733-B084-B69D367EF2D3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{BFA6B4BD-973F-49C2-B974-D7E2F2EA6509}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +27,6 @@ Global
 		{2ED14734-B1E0-4733-B084-B69D367EF2D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2ED14734-B1E0-4733-B084-B69D367EF2D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2ED14734-B1E0-4733-B084-B69D367EF2D3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BFA6B4BD-973F-49C2-B974-D7E2F2EA6509}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BFA6B4BD-973F-49C2-B974-D7E2F2EA6509}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BFA6B4BD-973F-49C2-B974-D7E2F2EA6509}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BFA6B4BD-973F-49C2-B974-D7E2F2EA6509}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

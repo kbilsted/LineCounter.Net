@@ -4,20 +4,32 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Kasper B. Graversen</Authors>
     <Copyright>Kasper B. Graversen, 2015-</Copyright>
-    <AssemblyVersion>1.0.5.0</AssemblyVersion>
-    <FileVersion>1.0.5.0</FileVersion>
+    <AssemblyVersion></AssemblyVersion>
+    <FileVersion></FileVersion>
     <PackageLicenseUrl>https://github.com/kbilsted/LineCounter.Net/blob/master/LICENSE</PackageLicenseUrl>
     <RootNamespace>KbgSoft.LineCounter</RootNamespace>
-    <Version>1.0.5</Version>
+    <Version>1.0.7</Version>
     <Description>An open source utility count lines of code and documentation in an intelligent way, supporting many languages.</Description>
     <PackageTags>Linecounting shieldsgenerator</PackageTags>
     <PackageProjectUrl>https://github.com/kbilsted/LineCounter.Net</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/kbilsted/StatePrinter/master/StatePrinter/gfx/stateprinter.png</PackageIconUrl>
     <PackageReleaseNotes>Add support for test-code detection and readme-mutator helper method</PackageReleaseNotes>
+    <Title>LineCounter</Title>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/kbilsted/LineCounter.Net</RepositoryUrl>
+	  <IsPackable>true</IsPackable>
+
   </PropertyGroup>
 
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

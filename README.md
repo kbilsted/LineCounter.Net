@@ -9,8 +9,8 @@ Features
 
 Project statistics:
 <!--start-->
-[![Stats](https://img.shields.io/badge/Code_lines-547-ff69b4.svg)]()
-[![Stats](https://img.shields.io/badge/Test_lines-115-69ffb4.svg)]()
+[![Stats](https://img.shields.io/badge/Code_lines-0-ff69b4.svg)]()
+[![Stats](https://img.shields.io/badge/Test_lines-0-69ffb4.svg)]()
 [![Stats](https://img.shields.io/badge/Doc_lines-84-ffb469.svg)]()
 <!--end-->
 
@@ -21,7 +21,7 @@ First install the nuget package: `LineCounter` (it is a **.Net Standard 2.0** pa
 
 The simplest way to automate using this library is to add a unit test that on each time it runs, mutates your readme file. That way your stats are always up to date. E.g. 
 
-        [Fact]
+         [Test]
         public void MutateReadme()
         {
             var basePath = Path.Combine(Assembly.GetExecutingAssembly().Location, "..", "..", "..","..","..");
