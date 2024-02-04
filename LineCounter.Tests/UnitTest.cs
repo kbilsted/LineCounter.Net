@@ -3,7 +3,7 @@ using System.Diagnostics;
 using KbgSoft.LineCounter;
 using NUnit.Framework;
 
-namespace TeamBinary.LineCounter.Tests
+namespace LineCounter.Tests
 {
     [TestFixture]
     public class UnitTest

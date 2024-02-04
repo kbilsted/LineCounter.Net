@@ -1,35 +1,65 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <Authors>Kasper B. Graversen</Authors>
-    <Copyright>Kasper B. Graversen, 2015-</Copyright>
-    <AssemblyVersion></AssemblyVersion>
-    <FileVersion></FileVersion>
-    <PackageLicenseUrl>https://github.com/kbilsted/LineCounter.Net/blob/master/LICENSE</PackageLicenseUrl>
-    <RootNamespace>KbgSoft.LineCounter</RootNamespace>
-    <Version>1.0.7</Version>
-    <Description>An open source utility count lines of code and documentation in an intelligent way, supporting many languages.</Description>
-    <PackageTags>Linecounting shieldsgenerator</PackageTags>
-    <PackageProjectUrl>https://github.com/kbilsted/LineCounter.Net</PackageProjectUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/kbilsted/StatePrinter/master/StatePrinter/gfx/stateprinter.png</PackageIconUrl>
-    <PackageReleaseNotes>Add support for test-code detection and readme-mutator helper method</PackageReleaseNotes>
-    <Title>LineCounter</Title>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/kbilsted/LineCounter.Net</RepositoryUrl>
-	  <IsPackable>true</IsPackable>
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0;net6.0;net8.0</TargetFrameworks>
+		<Authors>Kasper B. Graversen</Authors>
+		<RootNamespace>KbgSoft.LineCounter</RootNamespace>
+		<Description>An open source utility count lines of code and documentation in an intelligent way, supporting many languages.</Description>
+		<PackageTags>Linecounting shieldsgenerator</PackageTags>
+		<PackageProjectUrl>https://github.com/kbilsted/LineCounter.Net</PackageProjectUrl>
+		<PackageReleaseNotes>Add support for test-code detection and readme-mutator helper method</PackageReleaseNotes>
+		<Title>LineCounter</Title>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/kbilsted/LineCounter.Net</RepositoryUrl>
+		<IsPackable>true</IsPackable>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<Copyright>Kasper B. Graversen</Copyright>
+		<IncludeContentInPack>true</IncludeContentInPack>
+		<PackageProjectUrl>https://github.com/kbilsted/GreenFeetWorkFlow</PackageProjectUrl>
+		<IncludeSymbols>True</IncludeSymbols>
+		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PackageId>$(AssemblyName)</PackageId>
+		<Nullable>disable</Nullable>
+	</PropertyGroup>
 
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0|AnyCPU'">
+	  <WarningLevel>7</WarningLevel>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0|AnyCPU'">
+	  <WarningLevel>7</WarningLevel>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
+	  <WarningLevel>7</WarningLevel>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
+	  <WarningLevel>7</WarningLevel>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0|AnyCPU'">
+	  <WarningLevel>7</WarningLevel>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0|AnyCPU'">
+	  <WarningLevel>7</WarningLevel>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Folder Include="Properties\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="..\LICENSE">
+		  <Pack>True</Pack>
+		  <PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
 </Project>

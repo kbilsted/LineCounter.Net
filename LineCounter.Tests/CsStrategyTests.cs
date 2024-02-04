@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using System;
 
-namespace TeamBinary.LineCounter.Tests
+namespace LineCounter.Tests
 {
 
     [TestFixture]
