@@ -5,6 +5,7 @@
 
 	    public Statistics Count(string path)
 	    {
+            //Console.WriteLine("**"+path);
             return s;
         }
 	}
