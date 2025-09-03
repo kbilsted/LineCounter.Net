@@ -1,8 +1,4 @@
-﻿using System.IO;
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace KbgSoft.LineCounter.Strategies
+﻿namespace KbgSoft.LineCounter.Strategies
 {
 	public class SqlStrategy : IStrategy
 	{

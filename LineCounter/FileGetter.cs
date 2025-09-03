@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
-namespace KbgSoft.LineCounter {
+﻿namespace KbgSoft.LineCounter {
 	public class FileGetter {
 		public IEnumerable<string> GetFile(string path, Func<string, bool> filter) {
 			var d = new DirectoryInfo(path);

@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace KbgSoft.LineCounter
+﻿namespace KbgSoft.LineCounter
 {
 	public class Stats
 	{

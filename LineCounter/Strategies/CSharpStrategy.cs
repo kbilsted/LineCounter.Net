@@ -1,9 +1,4 @@
-﻿using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System;
-
-namespace KbgSoft.LineCounter.Strategies {
+﻿namespace KbgSoft.LineCounter.Strategies {
 	public class CSharpStrategy : IStrategy {
 		private static readonly TrimStringLens l = new TrimStringLens();
         private readonly HashSet<int> SeenBefore = new HashSet<int>();

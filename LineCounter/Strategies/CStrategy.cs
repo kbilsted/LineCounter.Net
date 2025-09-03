@@ -1,7 +1,4 @@
-﻿using System.IO;
-﻿using System.Collections.Generic;
-
-namespace KbgSoft.LineCounter.Strategies {
+﻿namespace KbgSoft.LineCounter.Strategies {
 	public class CStrategy : IStrategy {
 		private static readonly TrimStringLens l = new TrimStringLens();
 

@@ -1,5 +1,3 @@
-using System.IO;
-
 namespace KbgSoft.LineCounter.Strategies {
 	internal class CsHtmlStrategy : IStrategy {
 		private static readonly TrimStringLens l = new TrimStringLens();

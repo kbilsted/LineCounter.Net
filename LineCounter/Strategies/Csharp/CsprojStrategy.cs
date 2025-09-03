@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace KbgSoft.LineCounter.Strategies
+﻿namespace KbgSoft.LineCounter.Strategies
 {
     internal class CsprojStrategy : IStrategy
     {

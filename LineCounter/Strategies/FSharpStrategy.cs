@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace KbgSoft.LineCounter.Strategies {
+﻿namespace KbgSoft.LineCounter.Strategies {
 	internal class FSharpStrategy : IStrategy {
 		private static readonly TrimStringLens lens = new TrimStringLens();
 

@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace KbgSoft.LineCounter.Strategies {
+﻿namespace KbgSoft.LineCounter.Strategies {
 	internal class MarkDownStrategy : IStrategy {
 		private const int LineWidth = 75;
 
