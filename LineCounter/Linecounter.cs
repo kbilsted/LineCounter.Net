@@ -62,7 +62,8 @@ namespace KbgSoft.LineCounter
         readonly CSharpStrategy cs = new CSharpStrategy();
         readonly SqlStrategy sql = new SqlStrategy();
         readonly UnknownFileTypeStragegy unknown = new UnknownFileTypeStragegy();
-        readonly JSStrategy js = new JSStrategy();
+        readonly JsStrategy js = new JsStrategy();
+        readonly VueStrategy vue = new VueStrategy();
 
         public virtual IStrategy GetStrategy(string path)
         {
@@ -70,6 +71,10 @@ namespace KbgSoft.LineCounter
             var ext = Path.GetExtension(path).ToLowerInvariant();
             if (ext == ".cs")
                 return cs;
+            if (ext == ".config")
+                return new ConfigStrategy();
+            if (ext == ".aspx")
+                return new AspxStrategy();
             if (ext == ".cshtml")
                 return new CsHtmlStrategy();
             if (ext == ".csproj")
@@ -82,6 +87,8 @@ namespace KbgSoft.LineCounter
                 return new MarkDownStrategy();
             if (ext == ".c" || ext == ".h" || ext == ".cpp")
                 return c;
+            if (ext == ".vue")
+                return vue;
             if (ext == ".js")
                 return js;
             if (ext == ".ts")
